@@ -1,6 +1,6 @@
 package com.rojobit22.block
 
-class BulletListBlock(
+internal class BulletListBlock(
     private val content: StringBuilder
 ): MarkdownBlock {
     override fun item(text: String) = content.appendLine("* $text")
