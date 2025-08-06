@@ -71,12 +71,3 @@ mavenPublishing {
     signAllPublications() // GPG/PGP 서명
 
 }
-
-signing {
-    useInMemoryPgpKeys(
-        findProperty("signingKeyId") as String?,
-        findProperty("signingKey") as String?,
-        findProperty("signingPassword") as String?
-    )
-    sign(publishing.publications)
-}
