@@ -17,29 +17,7 @@ jobs:
         uses: anc95/ChatGPT-CodeReview@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-          # if use github models https://github.com/marketplace/models
-          USE_GITHUB_MODELS: true
-          MODEL: openai/gpt-4.1-mini
-
-          # OpenAI API 사용
-#          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-#          OPENAI_API_ENDPOINT: https://api.openai.com/v1
-#          MODEL: gpt-4o # 또는 gpt-3.5-turbo 등
-
-          # 언어 및 프롬프트 설정
           LANGUAGE: Korean
-          PROMPT: |
-            다음 코드 변경 사항을 리뷰해 주세요. 혼란스럽거나 개선할 부분이 있다면 알려주세요.
-
-          # 모델 세부 설정
-          top_p: 1
-          temperature: 0.7
-          max_tokens: 10000
-
-          # 리뷰할 파일 패턴 설정
-          INCLUDE_PATTERNS: "*.kt,*.kts,*.md"
-          IGNORE_PATTERNS: "build/**/*,*.lock,*.iml,.idea/**/*,**/node_modules/**/*"
-
-          # 너무 긴 diff는 무시
-          MAX_PATCH_LENGTH: 10000
+          USE_GITHUB_MODELS: true
+          LOG_LEVEL: debug
+          INCLUDE_PATTERNS: src/*,.github/**/*
