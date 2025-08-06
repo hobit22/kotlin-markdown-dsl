@@ -16,7 +16,10 @@ jobs:
         uses: anc95/ChatGPT-CodeReview@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          
+          # if use github models https://github.com/marketplace/models
+          USE_GITHUB_MODELS: true
+          MODEL: openai/gpt-4o
 
           LANGUAGE: Korean
           LOG_LEVEL: debug
