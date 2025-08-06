@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  models: read # GitHub Models 사용 시 필요
+  models: true # GitHub Models 사용 시 필요
 
 jobs:
   chatgpt-code-review:
@@ -17,7 +17,9 @@ jobs:
         uses: anc95/ChatGPT-CodeReview@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LANGUAGE: Korean
           USE_GITHUB_MODELS: true
+          MODEL: openai/gpt-4o
+
+          LANGUAGE: Korean
           LOG_LEVEL: debug
           INCLUDE_PATTERNS: src/*,.github/**/*
