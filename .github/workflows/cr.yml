@@ -7,7 +7,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  models: true # GitHub Models 사용 시 필요
+  models: read # GitHub Models 사용 시 필요
 
 jobs:
   chatgpt-code-review:
