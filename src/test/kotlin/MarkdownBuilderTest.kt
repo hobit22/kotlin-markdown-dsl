@@ -21,8 +21,8 @@ class MarkdownBuilderTest {
             header2("중제목")
 
             bulletList {
-                item("1번")
-                item("2번")
+                content("1번")
+                content("2번")
             }
 
             code("kotlin") {
@@ -32,4 +32,38 @@ class MarkdownBuilderTest {
 
         Assertions.assertEquals(expected, result)
     }
+
+    @Test
+    fun headerUsage() {
+        val result = markdown {
+            header1("Header") {
+                content("simple content")
+                content {
+                    val users = listOf(
+                        User("Alice", 25, "Developer"),
+                        User("Bob", 30, "Designer"),
+                        User("Charlie", 28, "Manager")
+                    )
+
+                    val report = StringBuilder()
+                    report.appendLine("=== User report ===")
+
+                    users.groupBy { it.role }
+                        .forEach { (role, userList) ->
+                            report.appendLine("**$role** (${userList.size})")
+                            userList.forEach { user ->
+                                report.appendLine("  - ${user.name} (${user.age} years old)")
+                            }
+                            report.appendLine()
+                        }
+
+                    report.toString()
+                }
+            }
+        }
+
+        println(result)
+    }
 }
+
+data class User(val name: String, val age: Int, val role: String)
