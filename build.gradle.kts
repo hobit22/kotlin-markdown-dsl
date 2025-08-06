@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "2.1.20"
+    signing
     id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
@@ -69,4 +70,12 @@ mavenPublishing {
 
     signAllPublications() // GPG/PGP 서명
 
+}
+
+signing {
+    useInMemoryPgpKeys(
+        findProperty("signingKeyId") as String?,
+        findProperty("signingKey") as String?,
+        findProperty("signingPassword") as String?
+    )
 }
