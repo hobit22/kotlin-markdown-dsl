@@ -8,8 +8,10 @@ class MarkdownBuilderTest {
         val expected = """
             # 테스트
             ## 중제목
+            
             * 1번
             * 2번
+            
             ```kotlin
             println("Hello World")
             ```
@@ -19,12 +21,12 @@ class MarkdownBuilderTest {
         val result = markdown {
             header1("테스트")
             header2("중제목")
-
+            newLine()
             bulletList {
                 content("1번")
                 content("2번")
             }
-
+            newLine()
             code("kotlin") {
                 text("println(\"Hello World\")")
             }
