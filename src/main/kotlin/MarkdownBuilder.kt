@@ -5,9 +5,13 @@ import com.rojobit22.block.BulletListBlock
 import com.rojobit22.block.CodeBlock
 import com.rojobit22.block.HeaderBlock
 import com.rojobit22.block.MarkdownBlock
+import java.io.File
+import java.nio.charset.Charset
 
 @MarkdownDsl
-class MarkdownBuilder {
+class MarkdownBuilder(
+    private val charset: Charset = Charsets.UTF_8,
+) {
     private val content = StringBuilder()
 
     fun header1(text: String, block: MarkdownBlock.() -> Unit = {}) {
@@ -46,6 +50,6 @@ class MarkdownBuilder {
     internal fun build() = content.toString()
 }
 
-fun markdown(block: MarkdownBuilder.() -> Unit): String {
-    return MarkdownBuilder().apply(block).build()
-}
+fun markdown(block: MarkdownBuilder.() -> Unit): String = MarkdownBuilder().apply(block).build()
+
+fun toFile(filePath: String, charset: Charset, block: MarkdownBuilder.() -> Unit) = File(filePath).writeText(markdown { block() }, charset)
