@@ -1,6 +1,10 @@
 import com.rojobit22.markdown
+import com.rojobit22.toFile
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import java.io.File
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class MarkdownBuilderTest {
     @Test
@@ -63,6 +67,55 @@ class MarkdownBuilderTest {
         }
 
         println(result)
+    }
+
+    @Test
+    fun toFileTest() {
+        // Given
+        val testFilePath = "test_markdown.md"
+        val charset = Charsets.UTF_8
+        val expectedContent = """
+        # 테스트 문서
+        ## 서브 헤더
+        * 첫 번째 항목
+        * 두 번째 항목
+        ```kotlin
+        fun hello() {
+            println("Hello, World!")
+        }
+        ```
+        
+    """.trimIndent()
+
+        try {
+            // When
+            toFile(testFilePath, charset) {
+                header1("테스트 문서")
+                header2("서브 헤더")
+
+                bulletList {
+                    content("첫 번째 항목")
+                    content("두 번째 항목")
+                }
+
+                code("kotlin") {
+                    text("fun hello() {")
+                    text("    println(\"Hello, World!\")")
+                    text("}")
+                }
+            }
+
+            // Then
+            val file = File(testFilePath)
+            assertTrue(file.exists(), "파일이 생성되어야 함")
+
+            val actualContent = file.readText(charset)
+            assertEquals(expectedContent, actualContent, "파일 내용이 일치해야 함")
+
+        } finally {
+            // 테스트 후 정리
+            File(testFilePath).deleteOnExit()
+        }
     }
 }
 
