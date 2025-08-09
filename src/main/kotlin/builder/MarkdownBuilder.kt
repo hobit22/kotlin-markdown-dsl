@@ -1,4 +1,4 @@
-package com.rojobit22
+package com.rojobit22.builder
 
 import com.rojobit22.annotation.MarkdownDsl
 import com.rojobit22.block.BulletListBlock
