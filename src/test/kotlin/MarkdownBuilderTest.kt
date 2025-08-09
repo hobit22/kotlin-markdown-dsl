@@ -1,4 +1,4 @@
-import com.rojobit22.markdown
+import com.rojobit22.builder.markdown
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
