@@ -1,5 +1,5 @@
-import com.rojobit22.markdown
-import com.rojobit22.toFile
+import com.rojobit22.builder.markdown
+import com.rojobit22.builder.toFile
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.io.File
